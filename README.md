@@ -11,7 +11,8 @@ This is a customized fork off of the [Adafruit Neopixel Library](https://github.
 
 ## Installation Instructions
 
-1. Download the latest release.
-2. In the Arduino IDE, navigate to `Sketch > Include Library > Add .ZIP Library`
-3. Add latest release as a .ZIP file
-4. In the Arduino IDE, navigate to `Files > Examples > LibraryName`
+1. Download and install [Arduino IDE](https://www.arduino.cc/en/software)
+2. Download the latest release.
+3. In the Arduino IDE, navigate to `Sketch > Include Library > Add .ZIP Library`
+4. Add latest release as a .ZIP file
+5. In the Arduino IDE, navigate to `Files > Examples > LibraryName`
