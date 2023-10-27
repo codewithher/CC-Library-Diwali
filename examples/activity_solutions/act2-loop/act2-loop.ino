@@ -22,6 +22,9 @@ void loop() {
   greenlight();
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Functions
+
 void redlight() {
   int Red = 150;
   int Green = 0;

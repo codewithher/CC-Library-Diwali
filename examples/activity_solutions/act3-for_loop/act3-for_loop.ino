@@ -19,12 +19,16 @@ void setup() {
 }
 
 void loop() {
-  // TODO: add comments
   changeColors();
   blinkingPatterns();
   fadeInAndOut();
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Functions
+
+// TODO: paramterize functions
+// TODO: comment how to use the functions defined below
 void changeColors() {
   int Red = 255;
   int Green = 255;

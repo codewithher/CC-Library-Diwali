@@ -20,6 +20,9 @@ void loop() {
   light();
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Functions
+
 void light() {
   // Set color values here! Colors range from 0 to 255
   // TODO: change me!
