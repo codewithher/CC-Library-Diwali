@@ -19,9 +19,9 @@ void setup() {
 }
 
 void loop() {
-  changeColors();
-  blinkingPatterns();
-  fadeInAndOut();
+  changeRed(5, 10);
+  blinkingPatterns(2);
+  fadeInAndOut(4,5);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -29,26 +29,52 @@ void loop() {
 
 // TODO: paramterize functions
 // TODO: comment how to use the functions defined below
-void changeColors() {
+void changeRed(int seconds, int numSteps) {
   int Red = 255;
   int Green = 255;
   int Blue = 255;
-  
-  for (int step = 0; step < STEPS; step++) {
+
+  for (int step = 0; step < numSteps; step++) {
     Red -= 10;
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();   // Send the updated pixel colors to the hardware.
-    delay(DELAYVAL); // Pause before next pass through loop
+    delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
   }
 }
 
-void blinkingPatterns() {
+void changeGreen(int seconds, int numSteps) {
+  int Red = 255;
+  int Green = 255;
+  int Blue = 255;
+
+  for (int step = 0; step < numSteps; step++) {
+    Green -= 10;
+    pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
+  }
+}
+
+void changeBlue(int seconds, int numSteps) {
+  int Red = 255;
+  int Green = 255;
+  int Blue = 255;
+
+  for (int step = 0; step < numSteps; step++) {
+    Blue -= 10;
+    pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
+  }
+}
+
+void blinkingPatterns(int seconds) {
   int Red = 255;
   int Green = 255;
   int Blue = 255;
   int num_blinks = 10;
-  int on_time = DELAYVAL;
-  int off_time = DELAYVAL;
+  int on_time = DELAYVAL * 2 * seconds;
+  int off_time = DELAYVAL * 2 * seconds;
 
   for (int i = 0; i < num_blinks; i++) {
     // Turn the LED on
@@ -63,12 +89,12 @@ void blinkingPatterns() {
   }
 }
 
-void fadeInAndOut() {
-  fadeIn();
-  fadeOut();
+void fadeInAndOut(int fadeInSeconds, int fadeOutSeconds) {
+  fadeIn(fadeInSeconds);
+  fadeOut(fadeOutSeconds);
 }
 
-void fadeIn() {
+void fadeIn(int seconds) {
   int Red = 150;
   int Green = 0;
   int Blue = 0;
@@ -76,11 +102,11 @@ void fadeIn() {
     pixels.setBrightness(brightness);
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();
-    delay(DELAYVAL);
+    delay(DELAYVAL * 2 * seconds);
   }
 }
 
-void fadeOut() {
+void fadeOut(int seconds) {
   int Red = 150;
   int Green = 0;
   int Blue = 0;
@@ -90,16 +116,16 @@ void fadeOut() {
     pixels.setBrightness(brightness);
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();
-    delay(DELAYVAL);
+    delay(DELAYVAL * 2 * seconds);
   }
 }
 
-void pulsatingEffect() {
+void pulsatingEffect(int seconds, int numPulses) {
   int Red = 150;
   int Green = 0;
   int Blue = 0;
-  int NUM_PULSATIONS = 10;
-  int PULSATE_DELAY = DELAYVAL;
+  int NUM_PULSATIONS = numPulses;
+  int PULSATE_DELAY = DELAYVAL * 2 * seconds;
 
   for (int i = 0; i < NUM_PULSATIONS; i++) {
     for (int brightness = 0; brightness <= BRIGHTNESS; brightness++) {

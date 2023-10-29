@@ -25,32 +25,32 @@ void loop() {
 ///////////////////////////////////////////////////////////////////////////////
 // Functions
 
-void redlight() {
+void redlight(int seconds) {
   int Red = 150;
   int Green = 0;
   int Blue = 0;
   
   pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
   pixels.show();   // Send the updated pixel colors to the hardware.
-  delay(DELAYVAL); // Pause before next pass through loop
+  delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
 }
 
-void yellowlight() {
+void yellowlight(int seconds) {
   int Red = 150;
   int Green = 150;
   int Blue = 0;
   
   pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
   pixels.show();   // Send the updated pixel colors to the hardware.
-  delay(DELAYVAL); // Pause before next pass through loop
+  delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
 }
 
-void greenlight() {
+void greenlight(int seconds) {
   int Red = 0;
   int Green = 150;
   int Blue = 0;
   
   pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
   pixels.show();   // Send the updated pixel colors to the hardware.
-  delay(DELAYVAL); // Pause before next pass through loop
+  delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
 }
