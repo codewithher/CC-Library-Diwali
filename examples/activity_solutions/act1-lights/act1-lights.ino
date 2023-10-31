@@ -1,5 +1,6 @@
 /**
  * Activity 1: Get those lights on!
+ * https://www.w3schools.com/colors/colors_rgb.asp
  */
 
 ///////////////////////////// DON'T TOUCH /////////////////////////////////////
