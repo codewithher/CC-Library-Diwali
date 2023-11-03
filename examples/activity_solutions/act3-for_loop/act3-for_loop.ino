@@ -35,7 +35,7 @@ void loop() {
  * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
  *   the red RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: changeRed(2,4) --> this decreases the red RBG value every 2 seconds, for 4 times
+ * Example Function Call: `changeRed(2,4)` --> this decreases the red RBG value every 2 seconds, for 4 times
  */
 void changeRed(int seconds, int numSteps) {
   int Red = 255;
@@ -58,7 +58,7 @@ void changeRed(int seconds, int numSteps) {
  * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
  *   the green RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: changeGreen(2,4) --> this decreases the green RBG value every 2 seconds, for 4 times
+ * Example Function Call: `changeGreen(2,4)` --> this decreases the green RBG value every 2 seconds, for 4 times
  */
 void changeGreen(int seconds, int numSteps) {
   int Red = 255;
@@ -81,7 +81,7 @@ void changeGreen(int seconds, int numSteps) {
  * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
  *   the blue RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: changeBlue(2,4) --> this decreases the blue RBG value every 2 seconds, for 4 times
+ * Example Function Call: `changeBlue(2,4)` --> this decreases the blue RBG value every 2 seconds, for 4 times
  */
 void changeBlue(int seconds, int numSteps) {
   int Red = 255;
@@ -104,7 +104,7 @@ void changeBlue(int seconds, int numSteps) {
  * Function Description: This function makes your LED blink "num_blinks" amount of times with the LED on and
  *   off for "seconds" amount of seconds.
  * ---
- * Example Function Call: blinkingPatterns(1,10) --> this makes the LED blink on and off for 1 second each, 10 times
+ * Example Function Call: `blinkingPatterns(1,10)` --> this makes the LED blink on and off for 1 second each, 10 times
  */
 void blinkingPatterns(int seconds, int num_blinks) {
   int Red = 255;
@@ -134,7 +134,7 @@ void blinkingPatterns(int seconds, int num_blinks) {
  * Function Description: This function makes your LED fade in with the brightness changing every "fadeInSeconds"
  *   seconds and then fade out with the brightness changing every "fadeOutSeconds" seconds
  * ---
- * Example Function Call: fadeInAndOut(1,2) --> this makes the LED fade in with the brightness chaning every 1 second
+ * Example Function Call: `fadeInAndOut(1,2)` --> this makes the LED fade in with the brightness chaning every 1 second
  *   and then fade out with the brighness changing every 2 seconds
  */
 void fadeInAndOut(int fadeInSeconds, int fadeOutSeconds) {
@@ -148,7 +148,7 @@ void fadeInAndOut(int fadeInSeconds, int fadeOutSeconds) {
  * ---
  * Function Description: This function makes your LED slowly get brighter each "seconds" number of seconds
  * ---
- * Example Function Call: fadeIn(1) --> this increases the brightness a little every second
+ * Example Function Call: `fadeIn(1)` --> this increases the brightness a little every second
  */
 void fadeIn(int seconds) {
   int Red = 150;
@@ -168,7 +168,7 @@ void fadeIn(int seconds) {
  * ---
  * Function Description: This function makes your LED slowly get darker each "seconds" number of seconds
  * ---
- * Example Function Call: fadeOut(1) --> this decreases the brightness a little every second
+ * Example Function Call: `fadeOut(1)` --> this decreases the brightness a little every second
  */
 void fadeOut(int seconds) {
   int Red = 150;
@@ -192,7 +192,7 @@ void fadeOut(int seconds) {
  * Function Description: This function makes your LED slowly turn all the way on and all the way off a "numPulses"
  *   amount of times, with the brightness changing every "seconds" amount of seconds
  * ---
- * Example Function Call: pulsatingEffect(1,2) --> this makes the LED turn on and off 2 times with the brightness
+ * Example Function Call: `pulsatingEffect(1,2)` --> this makes the LED turn on and off 2 times with the brightness
  *   changing every 1 second
  */
 void pulsatingEffect(int seconds, int numPulses) {
