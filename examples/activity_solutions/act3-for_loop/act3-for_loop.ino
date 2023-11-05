@@ -1,5 +1,5 @@
 /**
- * Activity 3: Get those lights on!
+ * Activity 3: Make your own patterns!
  */
 
 ///////////////////////////// DON'T TOUCH /////////////////////////////////////
@@ -19,7 +19,7 @@ void setup() {
 }
 
 void loop() {
-  changeRed(5, 10);
+  gradientRed(5, 10);
   blinkingPatterns(2, 10);
   fadeInAndOut(4,5);
 }
@@ -35,9 +35,9 @@ void loop() {
  * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
  *   the red RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: `changeRed(2,4)` --> this decreases the red RBG value every 2 seconds, for 4 times
+ * Example Function Call: `gradientRed(2,4)` --> this decreases the red RBG value every 2 seconds, for 4 times
  */
-void changeRed(int seconds, int numSteps) {
+void gradientRed(int seconds, int numSteps) {
   int Red = 255;
   int Green = 255;
   int Blue = 255;
@@ -58,9 +58,9 @@ void changeRed(int seconds, int numSteps) {
  * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
  *   the green RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: `changeGreen(2,4)` --> this decreases the green RBG value every 2 seconds, for 4 times
+ * Example Function Call: `gradientGreen(2,4)` --> this decreases the green RBG value every 2 seconds, for 4 times
  */
-void changeGreen(int seconds, int numSteps) {
+void gradientGreen(int seconds, int numSteps) {
   int Red = 255;
   int Green = 255;
   int Blue = 255;
@@ -81,9 +81,9 @@ void changeGreen(int seconds, int numSteps) {
  * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
  *   the blue RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: `changeBlue(2,4)` --> this decreases the blue RBG value every 2 seconds, for 4 times
+ * Example Function Call: `gradientBlue(2,4)` --> this decreases the blue RBG value every 2 seconds, for 4 times
  */
-void changeBlue(int seconds, int numSteps) {
+void gradientBlue(int seconds, int numSteps) {
   int Red = 255;
   int Green = 255;
   int Blue = 255;
