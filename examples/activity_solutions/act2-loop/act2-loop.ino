@@ -17,9 +17,9 @@ void setup() {
 }
 
 void loop() {
-  redlight();
-  yellowlight();
-  greenlight();
+  redlight(1);
+  yellowlight(1);
+  greenlight(1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
