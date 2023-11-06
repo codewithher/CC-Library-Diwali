@@ -19,9 +19,9 @@ void setup() {
 }
 
 void loop() {
-  gradientRed(5, 10);
+  gradientRed(1, 10);
   blinkingPatterns(2, 10);
-  fadeInAndOut(4,5);
+  fadeInAndOut(1, 1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -38,12 +38,12 @@ void loop() {
  * Example Function Call: `gradientRed(2,4)` --> this decreases the red RBG value every 2 seconds, for 4 times
  */
 void gradientRed(int seconds, int numSteps) {
-  int Red = 255;
-  int Green = 255;
-  int Blue = 255;
+  int Red = 250;
+  int Green = 250;
+  int Blue = 250;
 
   for (int step = 0; step < numSteps; step++) {
-    Red -= 10;
+    Red -= 50;
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();   // Send the updated pixel colors to the hardware.
     delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
@@ -137,7 +137,7 @@ void blinkingPatterns(int seconds, int num_blinks) {
  * Example Function Call: `fadeInAndOut(1,2)` --> this makes the LED fade in with the brightness chaning every 1 second
  *   and then fade out with the brighness changing every 2 seconds
  */
-void fadeInAndOut(int fadeInSeconds, int fadeOutSeconds) {
+void fadeInAndOut(float fadeInSeconds, float fadeOutSeconds) {
   fadeIn(fadeInSeconds);
   fadeOut(fadeOutSeconds);
 }
@@ -150,12 +150,16 @@ void fadeInAndOut(int fadeInSeconds, int fadeOutSeconds) {
  * ---
  * Example Function Call: `fadeIn(1)` --> this increases the brightness a little every second
  */
-void fadeIn(int seconds) {
+void fadeIn(float seconds) {
   int Red = 150;
   int Green = 0;
   int Blue = 0;
-  for (int brightness = BRIGHTNESS/2; brightness <= BRIGHTNESS; brightness+=2) {
-    pixels.setBrightness(brightness);
+  int brightnessStep = 5;    // how much we decrease brightness by
+  int brightnessMaxStep = BRIGHTNESS / brightnessStep;  // how many steps it takes
+
+  // Fade Out
+  for (int step = 0; step < brightnessMaxStep; step++) {
+    pixels.setBrightness(BRIGHTNESS - (step * brightnessStep));
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();
     delay(DELAYVAL * 2 * seconds);
@@ -170,14 +174,16 @@ void fadeIn(int seconds) {
  * ---
  * Example Function Call: `fadeOut(1)` --> this decreases the brightness a little every second
  */
-void fadeOut(int seconds) {
-  int Red = 150;
-  int Green = 0;
+void fadeOut(float seconds) {
+  int Red = 255;
+  int Green = 120;
   int Blue = 0;
-  
+  int brightnessStep = 5;    // how much we decrease brightness by
+  int brightnessMaxStep = BRIGHTNESS / brightnessStep;  // how many steps it takes
+
   // Fade Out
-  for (int brightness = BRIGHTNESS; brightness >= BRIGHTNESS/2; brightness-=2) {
-    pixels.setBrightness(brightness);
+  for (int step = 0; step < brightnessMaxStep; step++) {
+    pixels.setBrightness(BRIGHTNESS + (step * brightnessStep));
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();
     delay(DELAYVAL * 2 * seconds);
