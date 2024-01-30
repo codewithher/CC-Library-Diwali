@@ -18,13 +18,13 @@ void setup() {
 }
 
 void loop() {
-  light();
+  checkLight();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Functions
 
-void light() {
+void checkLight() {
   // Set color values here! Colors range from 0 to 255
   // TODO: change me!
   int Red = 0;
