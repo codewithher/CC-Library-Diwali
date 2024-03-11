@@ -20,7 +20,8 @@ void setup() {
 
 void loop() {
   // try hovering over these functions!
-  gradientRed(1.5, 10);
+  rainbow(20);
+  rainbowStep(2, 10);
   blinkingPatterns(2, 10);
   fadeInAndOut(1.5, 1.5);
 }
@@ -28,23 +29,54 @@ void loop() {
 ///////////////////////////////////////////////////////////////////////////////
 // Functions
 
+/*
+ * Parameters:
+ *   - "seconds": a number that describes how long you want the rainbow to be
+ * ---
+ * Function Description: This function rotates your LED through the all the colors for "seconds" seconds.
+ * ---
+ * Example Function Call: `rainbow(20)` --> this creates a rainbow that lasts 20 seconds
+ */
+void rainbow(int seconds) {
+  int i, j;
+
+  for(j=0; j<256; j++) {
+    for(i=0; i<pixels.numPixels(); i++) {
+      pixels.setPixelColor(i, Wheel((i+j) & 255));
+    }
+    pixels.show();
+    delay(seconds * 3.92);
+  }
+}
+
 /**
  * Parameters:
  *   - "seconds": a number that describes how long you want each "iteration" to be
- *   - "numSteps": a number that describes how many times you want the red color to change
+ *   - "numSteps": a number that describes how many times you want the colors to change (choose a number from 0 to 15)
  * ---
- * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
- *   the red RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
+ * Function Description: This function rotates your LED through the RGB colors by decreasing by a value of 50
+ * "numSteps" amount of times. It will decrease the value every "seconds" seconds.
  * ---
- * Example Function Call: `gradientRed(2,4)` --> this decreases the red RBG value every 2 seconds, for 4 times
+ * Example Function Call: `rainbowStep(2, 10)` --> this decreases the RBG value every 2 seconds, for 10 times
  */
-void gradientRed(float seconds, int numSteps) {
+void rainbowStep(float seconds, int numSteps) {
   int Red = 250;
-  int Green = 250;
-  int Blue = 250;
+  int Green = 0;
+  int Blue = 0;
 
   for (int step = 0; step < numSteps; step++) {
-    Red -= 50;
+    if (Red > 0) {
+      Red -= 50;
+      Green += 50;
+    }
+    else if (Green > 0) {
+      Green -= 50;
+      Blue += 50;
+    }
+    else if (Blue > 0) {
+      Blue -= 50;
+      Red += 50;
+    }
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();   // Send the updated pixel colors to the hardware.
     delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
@@ -52,49 +84,20 @@ void gradientRed(float seconds, int numSteps) {
 }
 
 /*
- * Parameters:
- *   - "seconds": a number that describes how long you want each "iteration" to be
- *   - "numSteps": a number that describes how many times you want the green color to change
- * ---
- * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
- *   the green RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
- * ---
- * Example Function Call: `gradientGreen(2,4)` --> this decreases the green RBG value every 2 seconds, for 4 times
+ * This is a helper function for our `rainbow()` method. It reuses steps to calculate which colors of the wheel
+ * to display. It is only called inside our rainbow function so don't worry about its contents!
  */
-void gradientGreen(float seconds, int numSteps) {
-  int Red = 250;
-  int Green = 250;
-  int Blue = 250;
-
-  for (int step = 0; step < numSteps; step++) {
-    Green -= 50;
-    pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
-    pixels.show();   // Send the updated pixel colors to the hardware.
-    delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
+uint32_t Wheel(byte WheelPos) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
+    return pixels.Color(255 - WheelPos * 3, 0, WheelPos * 3);
   }
-}
-
-/*
- * Parameters:
- *   - "seconds": a number that describes how long you want each "iteration" to be
- *   - "numSteps": a number that describes how many times you want the blue color to change
- * ---
- * Function Description: This function sets your LED to white (aka all RGB values to 255) and decreases 
- *   the blue RGB value by 10 a "numSteps" amount of times. It will decrease the value every "seconds" seconds.
- * ---
- * Example Function Call: `gradientBlue(2,4)` --> this decreases the blue RBG value every 2 seconds, for 4 times
- */
-void gradientBlue(float seconds, int numSteps) {
-  int Red = 250;
-  int Green = 250;
-  int Blue = 250;
-
-  for (int step = 0; step < numSteps; step++) {
-    Blue -= 50;
-    pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
-    pixels.show();   // Send the updated pixel colors to the hardware.
-    delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
+  if(WheelPos < 170) {
+    WheelPos -= 85;
+    return pixels.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
+  WheelPos -= 170;
+  return pixels.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
 
 /*
