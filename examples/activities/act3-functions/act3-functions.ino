@@ -20,84 +20,50 @@ void setup() {
 
 void loop() {
   // try hovering over these functions!
-  rainbow(20);
-  rainbowStep(2, 10);
+  rainbow(30);
   blinkingPatterns(2, 10);
   fadeInAndOut(1.5, 1.5);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// Functions
-
-/*
- * Parameters:
- *   - "seconds": a number that describes how long you want the rainbow to be
- * ---
- * Function Description: This function rotates your LED through the all the colors for "seconds" seconds.
- * ---
- * Example Function Call: `rainbow(20)` --> this creates a rainbow that lasts 20 seconds
- */
-void rainbow(int seconds) {
-  int i, j;
-
-  for(j=0; j<256; j++) {
-    for(i=0; i<pixels.numPixels(); i++) {
-      pixels.setPixelColor(i, Wheel((i+j) & 255));
-    }
-    pixels.show();
-    delay(seconds * 3.92);
-  }
-}
+///////////////////////////////////Functions//////////////////////////////////////////////
 
 /**
  * Parameters:
- *   - "seconds": a number that describes how long you want each "iteration" to be
- *   - "numSteps": a number that describes how many times you want the colors to change (choose a number from 0 to 15)
+ *   - "seconds": a number that describes how long you want the rainbow gradient to be
  * ---
- * Function Description: This function rotates your LED through the RGB colors by decreasing by a value of 50
- * "numSteps" amount of times. It will decrease the value every "seconds" seconds.
+ * Function Description: This function rotates your LED through the RGB colors (from red to green to blue) by 
+ *     decreasing each pixel by a value of 1. It will go through the entire rainbow of colors is "seconds" seconds.
  * ---
- * Example Function Call: `rainbowStep(2, 10)` --> this decreases the RBG value every 2 seconds, for 10 times
+ * Example Function Call: `rainbowStep(30)` --> creates a rainbow that lasts 30 seconds. 
  */
-void rainbowStep(float seconds, int numSteps) {
-  int Red = 250;
-  int Green = 0;
+void rainbow(float seconds) {
+  int Red = 0; 
+  int Green = 0; 
   int Blue = 0;
-
-  for (int step = 0; step < numSteps; step++) {
-    if (Red > 0) {
-      Red -= 50;
-      Green += 50;
-    }
-    else if (Green > 0) {
-      Green -= 50;
-      Blue += 50;
-    }
-    else if (Blue > 0) {
-      Blue -= 50;
-      Red += 50;
-    }
+  
+  // Adjust the Red pixel
+  for (Red = 255; Red > 0; Red --) {
+    Green += 1; 
     pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
     pixels.show();   // Send the updated pixel colors to the hardware.
-    delay(DELAYVAL * 2 * seconds); // Pause before next pass through loop
+    delay(DELAYVAL * 2 * seconds / 765); // Pause before next pass through loop (milliseconds)
   }
-}
 
-/*
- * This is a helper function for our `rainbow()` method. It reuses steps to calculate which colors of the wheel
- * to display. It is only called inside our rainbow function so don't worry about its contents!
- */
-uint32_t Wheel(byte WheelPos) {
-  WheelPos = 255 - WheelPos;
-  if(WheelPos < 85) {
-    return pixels.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  // Adjust the Green pixel
+  for (Green = 255; Green > 0; Green --) {
+    Blue += 1; 
+    pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL * 2 * seconds / 765); // Pause before next pass through loop (milliseconds)
   }
-  if(WheelPos < 170) {
-    WheelPos -= 85;
-    return pixels.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+
+  // Adjust the Blue pixel
+  for (Blue = 255; Blue > 0; Blue --) {
+    Red += 1; 
+    pixels.setPixelColor(0, pixels.Color(Red, Green, Blue));
+    pixels.show();   // Send the updated pixel colors to the hardware.
+    delay(DELAYVAL * 2 * seconds / 765); // Pause before next pass through loop (milliseconds)
   }
-  WheelPos -= 170;
-  return pixels.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
 
 /*
